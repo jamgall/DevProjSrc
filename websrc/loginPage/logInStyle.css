@@ -1,0 +1,17 @@
+html {
+	padding: 100px;
+	background-color: #0B3142;
+}
+
+form {
+	color: white;
+	background-color: #0B3142;
+}
+
+#emailInput {
+	
+}
+
+#signUp {
+	padding: 30px;
+}
