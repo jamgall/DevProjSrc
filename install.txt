@@ -1,0 +1,7 @@
+Download:
+NodeJS
+run the command: npm install nodemon -g
+cd into this file
+run the command: npm install
+to start run nodemon app.js
+
