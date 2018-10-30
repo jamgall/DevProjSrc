@@ -15,11 +15,54 @@ Written by: Andrew Pavey -->
 		<title>Login</title>
 		<script>
 
-			function scrape() {
+			async function scrape() {
 				var email = document.getElementById("emailInput").value;
 				var password = document.getElementById("passwordInput").value;
-				document.getElementById("temp1").innerHTML = email;
-				document.getElementById("temp2").innerHTML = password;
+				// document.getElementById("temp1").innerHTML = email;
+				// document.getElementById("temp2").innerHTML = password;
+
+				let login
+				try {
+					login = await post(`/login`, {email: email, password: password})
+				}
+				catch (error) {
+					console.log(error)
+					alert("Wrong Email or Username!")
+					return
+				}
+
+				if (login.status == "SUCCESS") {
+					alert("Logged in")
+					return
+				}
+			}
+
+			function post(sent_to, obj) {
+				return new Promise(function(resolve, reject) {
+					var xhttp = new XMLHttpRequest()
+					xhttp.onreadystatechange = function() {
+						if (this.readyState == 4 && this.status == 200) {
+							var data = JSON.parse(this.responseText)
+							if (data.status == "FAILURE") {
+								reject(data)
+							}
+							else {
+								resolve(data)
+							}
+						}
+					}
+					xhttp.onerror = function() {
+						reject(xhttp.statusText)
+					}
+					xhttp.open("POST", sent_to, true)
+					if (obj) {
+						xhttp.setRequestHeader('Content-Type', 'application/json');
+						xhttp.send(JSON.stringify(obj))
+					}
+					else {
+						xhttp.send()
+					}
+				})
 			}
 
 			// document.getElementById('button').onclick = function() {
