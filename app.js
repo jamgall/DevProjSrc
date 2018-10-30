@@ -12,6 +12,10 @@ app.get('/', function(req, res) {
   res.send('Hello World!')
 })
 
+app.get('/login', function(req, res) {
+  render(res, 'login.html')
+})
+
 app.get("/test", function(req, res) {
   // res.sendFile(__dirname + `/views/html/index.html`)
   render(res, 'index.html')
