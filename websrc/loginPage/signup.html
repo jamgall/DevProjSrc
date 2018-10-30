@@ -1,0 +1,83 @@
+<!-- Propery of Hackerfam
+Written by: Andrew Pavey -->
+
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<link href="logInStyle.css" type="text/css" rel="stylesheet"/>
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+		<script>
+			function scrapeSU() {
+				var firstName = document.getElementById("firstNameInput").value;
+				var lastName = document.getElementById("lastNameInput").value;
+				var emailSU = document.getElementById("emailInputSU").value;
+				var passwordSU = document.getElementById("passwordInputSU").value;
+				var confPasswordSU = document.getElementById("passwordConfSU").value;
+			}
+		</script>
+
+		<title>
+			Sign Up
+		</title>
+	</head>
+
+	<body>
+		<form action="#">
+
+			<div class="row justify-content-center">
+				<div class="col-3">
+					<h4 align="center">First Name</h4>
+				</div>
+
+				<div class="col-1"></div>
+
+				<div class="col-3">
+					<h4 align="center">Last Name</h4>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="form-group col-3">
+					<input type="text" class="form-control" placeholder="First Name" id="firstNameInput">
+				</div>
+
+				<div class="col-1"></div>
+
+				<div class="form-group col-3">
+					<input type="text" class="form-control" placeholder="Last Name" id="lastNameInput">
+				</div>
+			</div>
+
+			<h4 align="center">Email</h4>
+			<div class="row justify-content-center">
+				<div class="form-group col-7">
+					<input type="email" class="form-control" id="emailInputSU" aria-describedby="emailHelp" placeholder="Enter email">
+				</div>
+			</div>
+
+			<h4 align="center">Password</h4>
+			<div class="row justify-content-center">
+				<div class="form-group col-7">
+					<input type="password" class="form-control" id="passwordInputSU" placeholder="Password">
+				</div>
+			</div>
+
+			<h4 align="center">Confirm Password</h4>
+			<div class="row justify-content-center">
+				<div class="form-group col-7">
+					<input type="password" class="form-control" id="passwordConfSU" placeholder="Confirm Password">
+				</div>
+			</div>
+
+			<div align="center">
+				<button class="btn btn-success" id="submitButton">Submit</button>
+			</div>
+		</form>
+
+	</body>
+
+</html>
