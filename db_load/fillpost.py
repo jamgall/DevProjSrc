@@ -8,6 +8,7 @@ to_add = []
 config = {
 	'host':'localhost'
 }
+check = [10000, 50000, 100000, 500000, 1000000, 5000000, 10000000]
 con_keys = ['dbname', 'user']
 
 # writes the configurations for connecting to the postgres db
@@ -31,18 +32,24 @@ def main():
 		sys.exit(1)
 	cnx = conn.cursor()
 	print('##### Connected! #####\n\n')
+	count = 1
 	with open(filename, 'r') as file:
 		csvread = csv.reader(file)
 		print('loading database...')
 		for row in csvread:
-			#print row
+			if(check and count == check[0]):
+				print('Currently on record: %d' % count)
+				check.pop(0)
+				conn.commit()
 			add = row[0]
+			#print('Count: %d\tWord: %s' % (count, add))
 			if add.find("'") == -1:
-				cnx.execute("INSERT INTO pass (word) SELECT \'%s\' WHERE NOT EXISTS (SELECT word FROM pass WHERE word = \'%s\');" % (add, add))
+				cnx.execute("INSERT INTO testpass (word) VALUES ('%s') ON CONFLICT (word) DO NOTHING;" % (add))
+			count += 1
 	print('...database loaded')
-	os.remove(filename)
 	conn.commit()
-	cursor.close()
+	cnx.close()
+	os.remove(filename)
 	return 0
 
 
