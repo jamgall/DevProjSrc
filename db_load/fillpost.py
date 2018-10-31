@@ -19,7 +19,8 @@ def write_config():
 
 # allows the user to convert the .txt file to csv and add it to the db line by line
 def main():
-	to_csv.main()
+	filename = to_csv.main()
+	print('######Connecting to Database######')
 	write_config()
 	# if there are connection errors, handle them and print them out to the console
 	try:
@@ -28,8 +29,7 @@ def main():
 		print('Unable to connect!\n{0}').format(e)
 		sys.exit(1)
 	cnx = conn.cursor()
-	print('Connected!')
-	filename = raw_input('Please enter name of csv file to read in: ')
+	print('##### Connected! #####\n\n')
 	with open(filename, 'r') as file:
 		csvread = csv.reader(file)
 		print('loading database...')
@@ -37,7 +37,7 @@ def main():
 			#print row
 			add = row[0]
 			if add.find("'") == -1:
-				cnx.execute("INSERT INTO pass (word) VALUES (\'%s\');" % (add))
+				cnx.execute("INSERT INTO pass (word) SELECT \'%s\' WHERE NOT EXISTS (SELECT word FROM pass WHERE word = \'%s\');" % (add, add))
 	print('...database loaded')
 	conn.commit()
 	cursor.close()

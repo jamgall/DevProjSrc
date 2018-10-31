@@ -12,17 +12,18 @@ def read_in():
 			to_add.append(line)
 
 def write_csv():
-	print('writing...')
-	with open('pass_fill.csv', 'w') as file:
+	print('\nwriting...')
+	with open('temp.csv', 'w') as file:
 		writer = csv.writer(file)
 		for row in to_add:
 			writer.writerow([row])
-	print('...done')
+	print('...done\n')
 
 def main():
+	print('###### Converting file to .csv ######')
 	read_in()
 	write_csv()
-	return 0
+	return 'temp.csv'
 
 
 if __name__=="__main__":
