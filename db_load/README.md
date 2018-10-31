@@ -17,7 +17,7 @@ If the above .pgsql does not work for whatever reason, do the following:
 * Unzip the `pass1.zip` and `pass2.zip` file from the current directory
 * Run the following command `python fillpost.py`
 	* The program will ask you to give your postgres username and database name. (You must create a postgres user that does not require a password)
-	* When prompted, give the name of the unzipped .txt file
+	* When prompted, give the name of the unzipped .txt file and the table name you created from above.
 	* The above program will take about 5 minutes to run and will insert ~1,000,000 lines of the ~14,000,000 line file (working on fixing this problem)
 * After the program concludes, you can connect to the database by running: `psql dbname`
 * If you need to add more than one file, you will need to run the program more than once (This will be fixed later on)
