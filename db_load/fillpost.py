@@ -1,5 +1,6 @@
 import psycopg2 as post
 import sys
+import os
 import csv
 import to_csv
 
@@ -39,6 +40,7 @@ def main():
 			if add.find("'") == -1:
 				cnx.execute("INSERT INTO pass (word) SELECT \'%s\' WHERE NOT EXISTS (SELECT word FROM pass WHERE word = \'%s\');" % (add, add))
 	print('...database loaded')
+	os.remove(filename)
 	conn.commit()
 	cursor.close()
 	return 0
