@@ -32,19 +32,20 @@ def main():
 		sys.exit(1)
 	cnx = conn.cursor()
 	print('##### Connected! #####\n\n')
+	tbl = raw_input('Enter the name of the table to insert into: ')
 	count = 1
 	with open(filename, 'r') as file:
 		csvread = csv.reader(file)
 		print('loading database...')
 		for row in csvread:
-			if(check and count == check[0]):
-				print('Currently on record: %d' % count)
-				check.pop(0)
-				conn.commit()
 			add = row[0]
 			#print('Count: %d\tWord: %s' % (count, add))
 			if add.find("'") == -1:
-				cnx.execute("INSERT INTO testpass (word) VALUES ('%s') ON CONFLICT (word) DO NOTHING;" % (add))
+				if(check and count == check[0]):
+					print('Currently on record: %d' % count)
+					check.pop(0)
+					conn.commit()
+				cnx.execute("INSERT INTO %s (word) VALUES ('%s') ON CONFLICT (word) DO NOTHING;" % (tbl, add))
 			count += 1
 	print('...database loaded')
 	conn.commit()

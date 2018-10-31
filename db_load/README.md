@@ -12,6 +12,7 @@ To run the .pgsql file run the following
 * `psql -U username dbname < passdb.pgsql`
 
 If the above .pgsql does not work for whatever reason, do the following:
+* Create a table in psql with the following command `create table tbname(id serial primary key, word text unique);
 * Install psycopg2 by running `pip install psycopg2` and `pip install psycopg2-binaries`
 * Unzip the `pass1.zip` and `pass2.zip` file from the current directory
 * Run the following command `python fillpost.py`
