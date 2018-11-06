@@ -4,8 +4,6 @@
 
 pip install -r db_load/manual_loadin/requirements.txt
 
-#brew install postgresql
-
 # Initialize the database
 
 createdb -E LATIN9 --lc-collate C --lc-ctype C -T template0 password
