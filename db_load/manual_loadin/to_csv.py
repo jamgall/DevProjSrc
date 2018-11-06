@@ -1,7 +1,7 @@
 import csv
+import os
 
 to_add = []
-filename = ''
 
 def read_in(filename):
 	global to_add
@@ -20,14 +20,13 @@ def write_csv():
 			writer.writerow([row])
 	#print('...done\n')
 
-def main(fle):
-	global filename
-	filename = fle
-	if fle[-4:] != ".zip":
-		print('###### Converting file to .csv ######')
-		read_in(filename)
-		write_csv()
-		print('###### Converted! ######')
+def main():
+	for fle in os.listdir('dicts/'):
+		if fle[-4:] != ".zip":
+			print('###### Converting file to .csv ######')
+			read_in(fle)
+			write_csv()
+			print('###### Converted! ######')
 	return 'temp.csv'
 
 

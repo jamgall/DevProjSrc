@@ -33,22 +33,21 @@ def main():
 	print('##### Connected! #####\n\n')
 
 	print('loading database...')
-	for fle in os.listdir('dicts/'):
-		filename = to_csv.main(fle)
-		count = 0
-		with open(filename, 'r') as file:
-			csvread = csv.reader(file)
-			for row in csvread:
-				add = row[0]
-				if add.find("'") == -1:
-					count += 1
-					if(check and count == check[0]):
-						print('Currently on record: %d' % count)
-						check.pop(0)
-						conn.commit()
-					cnx.execute("INSERT INTO pass (word) VALUES ('%s') ON CONFLICT (word) DO NOTHING;" % (add))
-		conn.commit()
-		os.remove(filename)
+	filename = to_csv.main()
+	count = 0
+	with open(filename, 'r') as file:
+		csvread = csv.reader(file)
+		for row in csvread:
+			add = row[0]
+			if add.find("'") == -1:
+				count += 1
+				if(check and count == check[0]):
+					print('Currently on record: %d' % count)
+					check.pop(0)
+					conn.commit()
+				cnx.execute("INSERT INTO pass (word) VALUES ('%s') ON CONFLICT (word) DO NOTHING;" % (add))
+	conn.commit()
+	os.remove(filename)
 	cnx.close()
 	print('...database loaded')
 	return 0
