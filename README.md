@@ -2,4 +2,7 @@
 
 ## Written by: James Gallmeister, Tia Basek, Andrew Pavey, Liam Merz Hoffmeister, Lorenzo Repenning, Mathew Sadeik
 
-To install NodeJS and test cd into `TestJS`
+To run this application, you must have Homebrew installed for MAC and `pip` installed. 
+
+To initialize the repo, run `./config.sh`
+
