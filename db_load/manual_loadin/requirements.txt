@@ -2,4 +2,4 @@
 ###### Requirements ######
 
 psycopg2
-psycopg2-binaries
+psycopg2-binary

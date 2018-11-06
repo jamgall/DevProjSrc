@@ -3,29 +3,31 @@ import csv
 to_add = []
 filename = ''
 
-def read_in():
+def read_in(filename):
 	global to_add
-	filename = raw_input('Please enter name of file to add: ')
+	#print ("Converting file: %s" % filename)
 	count = 1
-	with open(filename, 'rw') as file:
+	with open('dicts/' + filename, 'rw') as file:
 		for line in file:
 			line = line.strip('\n')
 			to_add.append(line)
 
 def write_csv():
-	print('\nwriting...')
+	#print('\nwriting...')
 	with open('temp.csv', 'w') as file:
 		writer = csv.writer(file)
 		for row in to_add:
 			writer.writerow([row])
-	print('...done\n')
+	#print('...done\n')
 
 def main(fle):
 	global filename
 	filename = fle
-	print('###### Converting file to .csv ######')
-	read_in()
-	write_csv()
+	if fle[-4:] != ".zip":
+		print('###### Converting file to .csv ######')
+		read_in(filename)
+		write_csv()
+		print('###### Converted! ######')
 	return 'temp.csv'
 
 

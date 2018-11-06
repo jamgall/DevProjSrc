@@ -7,7 +7,7 @@ import to_csv
 to_add = []
 config = {
 	'host':'localhost',
-	'dbname':'password'
+	'dbname':'test'
 }
 check = [10000, 50000, 100000, 500000, 1000000, 5000000, 10000000]
 con_keys = ['user']
@@ -32,25 +32,25 @@ def main():
 	cnx = conn.cursor()
 	print('##### Connected! #####\n\n')
 
+	print('loading database...')
 	for fle in os.listdir('dicts/'):
-		filename = to_csv.main('fle')
+		filename = to_csv.main(fle)
+		count = 0
 		with open(filename, 'r') as file:
 			csvread = csv.reader(file)
-			print('loading database...')
 			for row in csvread:
 				add = row[0]
-				#print('Count: %d\tWord: %s' % (count, add))
 				if add.find("'") == -1:
+					count += 1
 					if(check and count == check[0]):
 						print('Currently on record: %d' % count)
 						check.pop(0)
 						conn.commit()
-					cnx.execute("INSERT INTO pass (word) VALUES ('%s') ON CONFLICT (word) UPDATE SET count = count + 1;" % (add))
-				count += 1
-		print('...database loaded')
+					cnx.execute("INSERT INTO pass (word) VALUES ('%s') ON CONFLICT (word) DO NOTHING;" % (add))
 		conn.commit()
 		os.remove(filename)
 	cnx.close()
+	print('...database loaded')
 	return 0
 
 
