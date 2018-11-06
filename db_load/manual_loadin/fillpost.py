@@ -22,10 +22,7 @@ def write_config():
 
 # allows the user to convert the .txt file to csv and add it to the db line by line
 def main():
-	done = False
-	filename = to_csv.main()
 	print('######Connecting to Database######')
-	write_config()
 	# if there are connection errors, handle them and print them out to the console
 	try:
 		conn = post.connect(**config)
@@ -34,9 +31,9 @@ def main():
 		sys.exit(1)
 	cnx = conn.cursor()
 	print('##### Connected! #####\n\n')
-	while ( not done ):
-		tbl = raw_input('Enter the name of the table to insert into: ')
-		count = 1
+
+	for fle in os.listdir('dicts/'):
+		filename = to_csv.main('fle')
 		with open(filename, 'r') as file:
 			csvread = csv.reader(file)
 			print('loading database...')
@@ -48,15 +45,12 @@ def main():
 						print('Currently on record: %d' % count)
 						check.pop(0)
 						conn.commit()
-					cnx.execute("INSERT INTO %s (word) VALUES ('%s') ON CONFLICT (word) DO NOTHING;" % (tbl, add))
+					cnx.execute("INSERT INTO pass (word) VALUES ('%s') ON CONFLICT (word) UPDATE SET count = count + 1;" % (add))
 				count += 1
 		print('...database loaded')
 		conn.commit()
-		choice = raw_input('Do you have more files to add? (y or n)\nA: ')
-		if choice == 'n':
-			done = True
+		os.remove(filename)
 	cnx.close()
-	os.remove(filename)
 	return 0
 
 

@@ -1,6 +1,7 @@
 import csv
 
 to_add = []
+filename = ''
 
 def read_in():
 	global to_add
@@ -19,7 +20,9 @@ def write_csv():
 			writer.writerow([row])
 	print('...done\n')
 
-def main():
+def main(fle):
+	global filename
+	filename = fle
 	print('###### Converting file to .csv ######')
 	read_in()
 	write_csv()

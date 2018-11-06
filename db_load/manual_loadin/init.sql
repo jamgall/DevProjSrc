@@ -3,7 +3,8 @@ DROP TABLE IF EXISTS pass ;
 CREATE TABLE pass 
 	(
 	id serial primary key,
-	word text
+	word text,
+	count int
 	);
 
 ALTER TABLE pass ADD CONSTRAINT pass_word_key UNIQUE (word);
