@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jamgall/DevProjSrc#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "pg-promise": "^8.5.1"
   }
 }

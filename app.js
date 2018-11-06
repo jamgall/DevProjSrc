@@ -5,6 +5,19 @@ app.use(express.json({limit: "50mb"}));
 
 app.use(express.static(__dirname + "/views"));
 
+const pgp = require('pg-promise')();
+
+const dbConfig = {
+   host: 'localhost',
+   port: 5432,
+   database: 'lab6',
+   user: 'lorenzo',
+   password: '' // TODO: Fill in your PostgreSQL password here.
+                // Use empty string if you did not set a password
+};
+
+const db = pgp(dbConfig);
+
 let render = function(res, file) {
   res.sendFile(`${__dirname}/views/html/${file}`)
 }
