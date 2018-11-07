@@ -1,6 +1,4 @@
-# Instructions for Database initialization locally
-## Written by: James Gallmeister
+# Manual Database Creation and Load
+## Written By: James Gallmeister
 
-Written for postgres 10.5
-
-This directory contains all the necessary files for filling the database for local deployment of our application.
+This directory contains all scripts and necessary files needed for local deployment and insertion of files into the postgres database.
