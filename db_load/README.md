@@ -3,4 +3,4 @@
 
 Written for postgres 10.5
 
-To fill the database manually, run the config file in manual_loadin and follow the README
+This directory contains all the necessary files for filling the database for local deployment of our application.

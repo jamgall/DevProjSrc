@@ -19,4 +19,4 @@ cd ../
 python fillpost.py
 
 cd dicts/
-#rm pass1.txt pass2.txt
+rm pass1.txt pass2.txt
