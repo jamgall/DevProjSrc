@@ -2,14 +2,21 @@
 
 # This file will install what is necessary for the application to run
 
-pip install -r db_load/requirements.txt
+pip install -r db_load/dependencies/requirements.txt
 
-brew install postgresql
-
-# Initialize the database using the pg_dump
-cd db_load/
-unzip db.zip
+# Initialize the database
 
 createdb -E LATIN9 --lc-collate C --lc-ctype C -T template0 password
-psql password<dbexport.pgsql
 
+psql password<db_load/dependencies/init.sql
+
+cd db_load/dicts/
+unzip "*.zip"
+#rm *.zip
+
+cd ../python
+
+python fillpost.py
+
+cd dicts/
+rm pass1.txt pass2.txt
