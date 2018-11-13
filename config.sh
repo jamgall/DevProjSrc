@@ -6,8 +6,8 @@
 
 #echo $a
 
-pip list | egrep 'psycopg2'
-#pip install -r db_load/dependencies/requirements.txt
+#pip list | egrep 'psycopg2'
+pip install -r db_load/dependencies/requirements.txt
 
 
 # Initialize the database
