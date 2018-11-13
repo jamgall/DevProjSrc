@@ -2,7 +2,13 @@
 
 # This file will install what is necessary for the application to run
 
-pip install -r db_load/dependencies/requirements.txt
+#a=$(pip list | egrep \'psycopg2\')
+
+#echo $a
+
+pip list | egrep 'psycopg2'
+#pip install -r db_load/dependencies/requirements.txt
+
 
 # Initialize the database
 
@@ -18,5 +24,6 @@ cd ../python
 
 python fillpost.py
 
-cd dicts/
+rm temp.csv
+cd ../dicts/
 rm pass1.txt pass2.txt

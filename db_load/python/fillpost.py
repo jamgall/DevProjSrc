@@ -42,10 +42,10 @@ def main():
 			if add.find("'") == -1:
 				count += 1
 				if(check and count == check[0]):
-					print('Currently on record: %d' % count)
+					print( '%d records committed' % count)
 					check.pop(0)
 					conn.commit()
-				cnx.execute("INSERT INTO pass (word) VALUES ('%s') ON CONFLICT (word) DO NOTHING;" % (add))
+				cnx.execute("INSERT INTO pass (word, count) VALUES ('%s', 1) ON CONFLICT (word) DO UPDATE SET count = pass.count + 1;" % (add))
 	conn.commit()
 	os.remove(filename)
 	cnx.close()
