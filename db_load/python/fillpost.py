@@ -7,7 +7,7 @@ import to_csv
 to_add = []
 config = {
 	'host':'localhost',
-	'dbname':'test'
+	'dbname':'password'
 }
 check = [10000, 50000, 100000, 500000, 1000000, 5000000, 10000000]
 con_keys = ['user']
