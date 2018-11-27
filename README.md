@@ -5,5 +5,8 @@
 Must have at least `pip 18.1` installed.
 * If you need to upgrade pip, run `sudo pip install -U pip`
 
+Must have `npm` installed.
+Must have `postgres 10.5` installed.
+
 To initialize the repo for local deployment, run `./config.sh`
 
