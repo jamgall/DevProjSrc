@@ -10,15 +10,6 @@ config = {
 	'dbname':'password'
 }
 check = [10000, 50000, 100000, 500000, 1000000, 5000000, 10000000]
-con_keys = ['user']
-
-# writes the configurations for connecting to the postgres db
-def write_config():
-	global config
-	for key in con_keys:
-		if key not in config:
-			resp = raw_input('Please enter the exact %s you are using: ' % key)
-			config[key] = resp
 
 # allows the user to convert the .txt file to csv and add it to the db line by line
 def main():
