@@ -24,6 +24,5 @@ cd ../python
 
 python fillpost.py
 
-rm temp.csv
 cd ../dicts/
 rm pass1.txt pass2.txt
