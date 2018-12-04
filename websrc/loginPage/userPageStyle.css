@@ -1,0 +1,257 @@
+html {
+	padding: 100px;
+	background-color: #0B3142;
+}
+
+body {
+	background-color: #0B3142 !important;
+}
+
+#userEmail {
+	background-color: #FFFFFF;
+	border-radius: 25px;
+}
+
+#userFirstName {
+	background-color: #FFFFFF;
+	border-radius: 25px;
+}
+
+#userLastName {
+	background-color: #FFFFFF;
+	border-radius: 25px;
+}
+
+#avatar {
+	border-radius: 50%;
+	padding: 10px;
+	width: 60px;
+}
+
+
+.header
+{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	background: transparent;
+	z-index: 100;
+}
+.header.scrolled
+{
+	background: #0B3142;
+	padding-top: 6px;
+}
+.header_content
+{
+	width: 100%;
+	height: 124px;
+	-webkit-transition: all 400ms ease;
+	-moz-transition: all 400ms ease;
+	-ms-transition: all 400ms ease;
+	-o-transition: all 400ms ease;
+	transition: all 400ms ease;
+}
+.header .header_content
+{
+	height: 80px;
+}
+.logo
+{
+	position: absolute;
+	top: 50%;
+	left: 0;
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+.logo a
+{
+	display: block;
+	font-size: 24px;
+	font-weight: 600;
+	color: #FFFFFF;
+}
+.logo a span
+{
+	color: #1befc5;
+}
+.main_nav ul li:not(:last-child)
+{
+	margin-right: 48px;
+}
+.main_nav ul li a
+{
+	font-size: 16px;
+	font-weight: 600;
+	color: #FFFFFF;
+}
+.main_nav ul li.active a,
+.main_nav ul li a:hover
+{
+	color: #1befc5;
+}
+.log_reg
+{
+	position: absolute;
+	top: 50%;
+	right: 0;
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+.log_reg_text a
+{
+	font-size: 16px;
+	font-weight: 600;
+	color: #FFFFFF;
+}
+.log_reg_text a:hover
+{
+	color: #1befc5;
+}
+.log_reg_content > div:not(:last-child)::after
+{
+	display: inline-block;
+	content: '/';
+	font-size: 16px;
+	font-weight: 600;
+	color: #FFFFFF;
+	margin-left: 4px;
+	margin-right: 4px;
+}
+.hamburger
+{
+	display: none;
+	cursor: pointer;
+	border: solid 1px transparent;
+	border-radius: 7px;
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+.hamburger:hover
+{
+	border: solid 1px rgba(255,255,255,0.15);
+}
+.hamburger i
+{
+	font-size: 20px;
+	color: #FFFFFF;
+	padding: 5px;
+}
+
+.menu
+{
+	position: fixed;
+	top: 0;
+	right: -350px;
+	width: 350px;
+	height: 100vh;
+	background: #0B3142;
+	z-index: 102;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 50px;
+}
+.menu.active
+{
+	right: 0;
+}
+.menu_overlay
+{
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(255,255,255,0.55);
+	z-index: 101;
+	visibility: hidden;
+	opacity: 0;
+}
+.menu_overlay.active
+{
+	visibility: visible;
+	opacity: 1;
+}
+.menu_close_container
+{
+	position: absolute;
+    top: 41px;
+    left: 28px;
+    width: 18px;
+    height: 18px;
+    transform-origin: center center;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    cursor: pointer;
+    z-index: 1;
+}
+.menu_close
+{
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3D;
+}
+.menu_close div
+{
+    width: 100%;
+    height: 2px;
+    background: #FFFFFF;
+    top: 8px;
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+.menu_close div:last-of-type
+{
+    -webkit-transform: rotate(90deg) translateX(-2px);
+    -moz-transform: rotate(90deg) translateX(-2px);
+    -ms-transform: rotate(90deg) translateX(-2px);
+    -o-transform: rotate(90deg) translateX(-2px);
+    transform: rotate(90deg) translateX(-2px);
+    transform-origin: center;
+}
+.menu_close:hover div
+{
+    background: #1befc5;
+}
+.menu .log_reg
+{
+	display: block;
+	position: relative;
+	top: auto;
+	right: auto;
+	text-align: right;
+}
+.menu_nav
+{
+	margin-top: 50px;
+}
+.menu_nav ul li:not(:last-child)
+{
+	margin-bottom: 3px;
+}
+.menu_nav ul li a
+{
+	font-size: 24px;
+	font-weight: 500;
+	color: rgba(255,255,255,0.75);
+}
+.menu_nav ul li a:hover
+{
+	color: #1befc5;
+}

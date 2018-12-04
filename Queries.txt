@@ -1,0 +1,11 @@
+1.Query to extract a password from the dictionary table to be compared with the user's potential password:
+select password from dictionary
+where input = password;
+
+2. Query to extract password and email of existing user:
+select emailaddr, password from users
+where emailaddr = input1 and password = input2;
+
+3. Query to insert a new user into the users table:
+insert into users (emailaddr, password, firstname, lastname) 
+values(field1,field2,field3,field4);
