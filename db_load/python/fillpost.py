@@ -36,7 +36,7 @@ def main():
 					print( '%d records committed' % count)
 					check.pop(0)
 					conn.commit()
-				cnx.execute("INSERT INTO pass (word, count) VALUES ('%s', 1) ON CONFLICT (word) DO UPDATE SET count = pass.count + 1;" % (add))
+				cnx.execute("INSERT INTO pass (word, count) VALUES ('%s', 1) ON CONFLICT (word) DO UPDATE SET count = EXCLUDED.count + 1;" % (add))
 	conn.commit()
 	os.remove(filename)
 	cnx.close()
