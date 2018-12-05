@@ -9,10 +9,10 @@ const pgp = require('pg-promise')();
 
 const dbConfig = {
    host: 'localhost',
-   port: 5432,
+   // port: 5432,
    database: 'password',
-   user: 'lorenzo',
-   password: '' // TODO: Fill in your PostgreSQL password here.
+   // user: 'lorenzo',
+   // password: '' // TODO: Fill in your PostgreSQL password here.
                 // Use empty string if you did not set a password
 };
 
