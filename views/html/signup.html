@@ -7,12 +7,12 @@ Written by: Andrew Pavey -->
 
 	<head>
 		<link rel="stylesheet" type="text/css" href="./../css/FrontPage.css">
+
 		<link href="./../css/logInStyle.css" type="text/css" rel="stylesheet"/>
 
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-		<title>Login</title>
 		<script>
 function post(sent_to, obj) {
 	return new Promise(function(resolve, reject) {
@@ -42,39 +42,47 @@ function post(sent_to, obj) {
 	})
 }
 
-async function login() {
-	let email = document.querySelector("#emailInput").value
-	let password = document.querySelector("#passwordInput").value
+async function scrapeSU() {
+	var firstName = document.getElementById("firstNameInput").value;
+	var lastName = document.getElementById("lastNameInput").value;
+	var emailSU = document.getElementById("emailInputSU").value;
+	var passwordSU = document.getElementById("passwordInputSU").value;
+	var confPasswordSU = document.getElementById("passwordConfSU").value;
 
-	console.log(email)
-	console.log(password)
+	if (passwordSU != confPasswordSU) {
+		alert("Passwords do not match!")
+		return
+	}
+
+	let query = {
+		first_name: firstName,
+		last_name: lastName,
+		email: emailSU,
+		password: passwordSU,
+	}
 
 	let data
 	try {
-		data = await post(`/login`, {email: email, password: password})
+		data = await post(`/signup`, query)
 	}
 	catch(error) {
 		console.error(error)
 		return
 	}
 
-	alert(data.status)
-	if (data.status == "SUCCESS") {
-		window.location.href = "/"
-	}
+	console.log(data)
+	alert(data.text)
 }
-
 		</script>
 
-
-
+		<title>
+			Sign Up
+		</title>
 	</head>
 
-
-<body>
-	<!-- Header -->
-
-	<header class="header trans_400">
+	<body>
+		<!-- Header -->
+		<header class="header trans_400">
 		<div class="container">
 			<div class="row">
 				<div class="col">
@@ -99,7 +107,6 @@ async function login() {
 			</div>
 		</div>
 	</header>
-
 	<!-- Menu -->
 
 	<div class="menu_overlay trans_400"></div>
@@ -119,40 +126,61 @@ async function login() {
 			</ul>
 		</nav>
 	</div>
+		<!-- Form -->
+		<form onSubmit="return false;">
 
+			<div class="row justify-content-center">
+				<div class="col-3">
+					<h4 align="center">First Name</h4>
+				</div>
 
+				<div class="col-1"></div>
 
-
-<form onSubmit="return false;">
-		<h4 align="center" >Email address</h4>
-		<div class="row justify-content-center">
-			<div class="form-group col-7">
-		    	<input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Enter email">
-		  	</div>
-	  	</div>
-
-		<h4 align="center">Password</h4>
-		<div class="row justify-content-center">
-			<div class="form-group col-7">
-				<input type="password" class="form-control" id="passwordInput" placeholder="Password">
-				<div align="center">
-					<button type="button" class="btn btn-link">Forgot password?</button>
+				<div class="col-3">
+					<h4 align="center">Last Name</h4>
 				</div>
 			</div>
-		</div>
+			<div class="row justify-content-center">
+				<div class="form-group col-3">
+					<input type="text" class="form-control" placeholder="First Name" id="firstNameInput">
+				</div>
 
-		<div align="center">
-			<button class="btn btn-success col-6" id="button" onclick="login();">Log in</button>
-		</div>
+				<div class="col-1"></div>
 
-		<div align="center" id="signUp">
-			<text>Don't have an account?<br/></text>
-			<a href="signup.html" class="btn btn-link">Sign Up</a>
-		</div>
-	</form>
+				<div class="form-group col-3">
+					<input type="text" class="form-control" placeholder="Last Name" id="lastNameInput">
+				</div>
+			</div>
 
-<script src="./../css/js/jquery-3.2.1.min.js"></script>
-<script src="./../css/plugins/scrollmagic/ScrollMagic.min.js"></script>
-<script src="./../css/js/custom.js"></script>
-</body>
+			<h4 align="center">Email</h4>
+			<div class="row justify-content-center">
+				<div class="form-group col-7">
+					<input type="email" class="form-control" id="emailInputSU" aria-describedby="emailHelp" placeholder="Enter email">
+				</div>
+			</div>
+
+			<h4 align="center">Password</h4>
+			<div class="row justify-content-center">
+				<div class="form-group col-7">
+					<input type="password" class="form-control" id="passwordInputSU" placeholder="Password">
+				</div>
+			</div>
+
+			<h4 align="center">Confirm Password</h4>
+			<div class="row justify-content-center">
+				<div class="form-group col-7">
+					<input type="password" class="form-control" id="passwordConfSU" placeholder="Confirm Password">
+				</div>
+			</div>
+
+			<div align="center">
+				<button class="btn btn-success" onclick="scrapeSU()" id="submitButton">Submit</button>
+			</div>
+		</form>
+
+		<script src="./../css/js/jquery-3.2.1.min.js"></script>
+		<script src="./../css/plugins/scrollmagic/ScrollMagic.min.js"></script>
+		<script src="./../css/js/custom.js"></script>
+
+	</body>
 </html>
