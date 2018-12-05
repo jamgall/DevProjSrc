@@ -9,6 +9,8 @@
 #pip list | egrep 'psycopg2'
 pip install -r db_load/dependencies/requirements.txt
 
+#install the necessary node packages
+npm install
 
 # Initialize the database
 
