@@ -38,7 +38,7 @@ def main():
 					conn.commit()
 				cnx.execute("INSERT INTO pass (word, count) VALUES ('%s', 1) ON CONFLICT (word) DO UPDATE SET count = EXCLUDED.count + 1;" % (add))
 	conn.commit()
-	os.remove(filename)
+	#os.remove(filename)
 	cnx.close()
 	print('...database loaded')
 	return 0
