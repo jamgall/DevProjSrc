@@ -1,9 +1,18 @@
 const express = require('express')
 const app = express()
 const path = require('path');
+var session = require('express-session')
+var cookieParser = require('cookie-parser')
+
 app.use(express.json({limit: "50mb"}));
 
 app.use(express.static(__dirname + "/views"));
+
+app.use(session({
+  secret: 'keyboard cat',
+  cookie: { maxAge: 60000 }
+}))
+app.use(cookieParser())
 
 const pgp = require('pg-promise')();
 
@@ -28,8 +37,20 @@ app.get('/', function(req, res) {
   render(res, 'FrontPagev2.html')
 })
 
+app.post('/check_if_login', function(req, res) {
+  res.json({login: req.session.login})
+})
+
 app.post('/check_password', async function(req, res) {
   console.log(req.body)
+  console.log(req.session.login)
+
+  if (req.session.login == undefined && parseInt(req.cookies.password) > 2) {
+    console.log("meow")
+    console.log(req.cookies.password)
+    res.json({status: "SUCCESS", text: "Login for more password checks!!!"})
+    return
+  }
 
   let result
   try {
@@ -75,6 +96,9 @@ app.post("/login", async function(req, res) {
     res.json({status: "FAIL", text: "No Results"})
     return
   }
+
+  req.session.login = true
+
 
   res.json({status: "SUCCESS", text: "Login Success"})
 

@@ -42,6 +42,8 @@ function post(sent_to, obj) {
 	})
 }
 
+let check_pass = 0
+
 async function check_password() {
 	let password = document.querySelector("#password_text").value
 
@@ -59,8 +61,39 @@ async function check_password() {
 		return
 	}
 
+	check_pass++
+	setCookie('password', check_pass.toString(), 1)
+
 	console.log(data)
 	alert(data.text)
+}
+
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+window.onload = async function() {
+	setCookie('password', "0", 1)
+	let isLogin
+	try {
+		isLogin = await post(`/check_if_login`)
+	}
+	catch(error) {
+		console.log(error)
+		return
+	}
+
+	console.log("LOGIN:")
+	console.log(isLogin.login)
+	if (isLogin.login == true) {
+		let bla = document.querySelector('#login_status')
+		bla.innerHTML = "Log Out"
+		// bla.style['background-color'] = 'blue'
+		// bla.style['cursor'] = 'pointer'
+	}
 }
 
 </script>
@@ -85,7 +118,7 @@ async function check_password() {
 							</ul>
 						</nav>
 						<div class="log_reg">
-							<div class="log_reg_content d-flex flex-row align-items-center justify-content-start">
+							<div id="login_status" class="log_reg_content d-flex flex-row align-items-center justify-content-start">
 								<div class="login log_reg_text"><a href="/login">Login</a></div>
 								<div class="register log_reg_text"><a href="/signup">Sign Up</a></div>
 							</div>
